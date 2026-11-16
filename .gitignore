@@ -1,0 +1,20 @@
+# ===== 敏感配置（含服务器地址和 token，绝对不能提交）=====
+frpc.toml
+
+# ===== frp 程序与安装包（脚本可自动下载）=====
+frpc.exe
+frpc.exe.bak
+frp_*.zip
+*.part
+tmp_update/
+
+# ===== 日志 =====
+logs/
+*.log
+
+# ===== 系统 / 编辑器文件 =====
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+*.code-workspace
