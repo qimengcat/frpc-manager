@@ -104,24 +104,32 @@ $FrpcVersionOverride = ""      # 手动指定版本，如 "v0.61.1"；留空时�
 第一次编辑配置时会自动生成 `frpc.toml` 模板：
 
 ```toml
-serverAddr = "your.server.com"
-serverPort = 7000
+# FRP 客户端配置文件
+# 请根据实际情况修改以下配置
 
-auth.method = "token"
-auth.token = "your-token"
+serverAddr = "your.server.com"      # 远程服务器地址，改为实际IP或域名
+serverPort = 7000                      # 服务器端口，默认7000
 
+# 认证配置
+# auth.method = "token"
+# auth.token = "your-token"         # 认证令牌
+
+# 日志配置
 log.to = "./logs/frpc.log"
 log.level = "info"
 log.maxDays = 3
 
+# 传输加密
 transport.tls.enable = true
+
+# 端口映射配置，可添加多个[[proxies]]
 
 [[proxies]]
 name = "rdp"
 type = "tcp"
 localIP = "127.0.0.1"
-localPort = 3389
-remotePort = 6000
+localPort = 3389      # Windows远程桌面默认端口
+remotePort = 6000      # 远程端口，向管理员获取
 ```
 
 改完配置要执行 `restart` 才会生效。完整的配置项见 [frp 官方文档](https://gofrp.org/zh-cn/docs/)。
