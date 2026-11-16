@@ -462,6 +462,20 @@ log.maxDays = 3
 transport.tls.enable = true
 
 # 端口映射配置，可添加多个[[proxies]]
+# [[proxies]]
+# name = "ssh"                           # 规则名称
+# type = "tcp"                          # 协议类型
+# localIP = "127.0.0.1"                 # 本地地址
+# localPort = 22                        # 本地端口
+# remotePort = 6000                    # 远程端口
+
+# 示例：添加更多映射
+# [[proxies]]
+# name = "web"
+# type = "http"
+# localIP = "127.0.0.1"
+# localPort = 8080
+# customDomains = ["your-domain.com"]
 
 [[proxies]]
 name = "rdp"
