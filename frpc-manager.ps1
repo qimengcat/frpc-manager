@@ -443,23 +443,24 @@ function Edit-Config {
     if (-not (Test-Path $conf)) {
         Write-Host "配置文件不存在，正在创建默认配置..."
         $tomlContent = @"
-# FRP 客户端配置文件
-# 请根据实际情况修改以下配置
+# === 服务端连接信息 ===
+serverAddr = "your.server.com"    # 远程服务器地址，改为实际IP或域名
+serverPort = 7000    # 服务器端口，默认7000
 
-serverAddr = "your.server.com"      # 远程服务器地址，改为实际IP或域名
-serverPort = 7000                      # 服务器端口，默认7000
+# === 必须的安全认证 (需与服务端 auth.token 完全一致) ===
+auth.method = "token"
+auth.token = "your-token"    # 认证令牌， [核心] 必须与服务端一致才能连接
 
-# 认证配置
-# auth.method = "token"
-# auth.token = "your-token"         # 认证令牌
-
-# 日志配置
-log.to = "./logs/frpc.log"
-log.level = "info"
-log.maxDays = 3
-
-# 传输加密
+# === 必须开启：TLS 传输加密 (配合服务端的 transport.tls.force = true) ===
 transport.tls.enable = true
+
+# === 性能与连接优化 ===
+transport.tcpMux = true    # 开启 TCP 多路复用，显著减少连接握手开销
+
+# === 日志配置 ===
+log.to = "./logs/frpc.log"    # 日志存储位置
+log.level = "info"    # 日志级别
+log.maxDays = 3    # 日志保留天数
 
 # 端口映射配置，可添加多个[[proxies]]
 # [[proxies]]
